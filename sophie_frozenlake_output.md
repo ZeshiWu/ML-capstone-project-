@@ -1,3 +1,5 @@
+# 4x4 frozen lake map PPO - is_slippery off
+```
 Output 1: Average over 100 episodes - Reward: 0.0
 -----------------------------
 | time/              |      |
@@ -4643,6 +4645,9 @@ Output 245: Average over 100 episodes - Reward: 1.0
 |    value_loss           | 0.00186     |
 -----------------------------------------
 Overall: Average Reward: 0.9463636363636364
+```
+# 4x4 frozen lake map PPO - is_slippery on
+```
 Using cpu device
 Logging to ./PPOtensorboard/PPO_2
 Output 1: Average over 100 episodes - Reward: 0.02
@@ -9290,6 +9295,11 @@ Output 245: Average over 45 episodes - Reward: 0.7111111111111111
 |    value_loss           | 0.0314       |
 ------------------------------------------
 Overall: Average Reward: 0.589343582786947
+```
+
+# 8x8 frozen lake map PPO - is_slippery off
+
+```
 Using cpu device
 Logging to ./PPOtensorboard/PPO_3
 Output 1: Average over 66 episodes - Reward: 0.0
@@ -13937,6 +13947,10 @@ Output 245: Average over 100 episodes - Reward: 1.0
 |    value_loss           | 0.000147   |
 ----------------------------------------
 Overall: Average Reward: 0.7437646340221928
+```
+
+# 8x8 frozen lake map PPO - is_slippery off
+```
 Using cpu device
 Logging to ./PPOtensorboard/PPO_4
 Output 1: Average over 68 episodes - Reward: 0.0
@@ -18584,3 +18598,8 @@ Output 245: Average over 30 episodes - Reward: 0.5
 |    value_loss           | 0.013        |
 ------------------------------------------
 Overall: Average Reward: 0.22795991166978088
+```
+
+# 8x8 frozen lake map DQN - is_slippery off
+
+
