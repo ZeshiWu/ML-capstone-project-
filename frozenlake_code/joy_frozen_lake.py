@@ -39,6 +39,7 @@ subprocess.run(["find", "/content/PPOtensorboard/", "-type", "d", "-name", "PPO_
 """### 4x4 frozen lake map PPO - is_slippery off
 
 """
+print("4x4 frozen lake map PPO - is_slippery off")
 
 from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3 import PPO
@@ -95,6 +96,7 @@ if total_episodes > 0:
 env.close()
 
 """###4x4 frozen lake map PPO - is_slippery on"""
+print("4x4 frozen lake map PPO - is_slippery on")
 
 from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3 import PPO
@@ -153,6 +155,7 @@ env.close()
 """### 8x8 frozen lake map PPO - is_slippery off
 
 """
+print("8x8 frozen lake map PPO - is_slippery off")
 
 from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3 import PPO
@@ -209,6 +212,7 @@ if total_episodes > 0:
 env.close()
 
 """### 8x8 frozen lake map PPO - is_slippery on"""
+print("8x8 frozen lake map PPO - is_slippery off")
 
 from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3 import PPO
@@ -265,6 +269,7 @@ if total_episodes > 0:
 env.close()
 
 """# 8x8 frozen lake map DQN - is_slippery off"""
+print("8x8 frozen lake map DQN - is_slippery off")
 
 #generate_random_map(size=map_size, p=params.proba_frozen, seed=params.seed),
 env = gym.make(
