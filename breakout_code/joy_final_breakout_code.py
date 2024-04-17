@@ -7,8 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1tVLsH2Orw_-GY_NkS8b-YJ_im8MxC1zx
 """
 
-!pip install stable-baselines3[extra]
-!pip install gymnasium
+pip install stable-baselines3[extra]
+pip install gymnasium
 
 import os
 from stable_baselines3.common.callbacks import BaseCallback
