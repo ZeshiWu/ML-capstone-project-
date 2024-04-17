@@ -289,7 +289,7 @@ import sys
 env = gym.make("FrozenLake-v1", is_slippery=False, map_name="8x8", render_mode="rgb_array")
 model = DQN("MlpPolicy", env, verbose=1, tensorboard_log="./DQNtensorboard/")
 
-output_file = "/content/model_output.txt"
+'''output_file = "/content/model_output.txt"
 with open(output_file, "w") as file:
     original_stdout = sys.stdout
     sys.stdout = file
@@ -298,7 +298,27 @@ with open(output_file, "w") as file:
     model.learn(total_timesteps=int(5e5), progress_bar=True)
 
 
+    sys.stdout = original_stdout'''
+import os
+
+# Define the path to the output file relative to the script location
+output_file = "model_output.txt"
+
+# Get the directory of the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+output_path = os.path.join(script_dir, output_file)
+
+# Open the output file
+with open(output_path, "w") as file:
+    original_stdout = sys.stdout
+    sys.stdout = file
+
+    # Train the model
+    model.learn(total_timesteps=int(5e5), progress_bar=True)
+
+    # Restore stdout
     sys.stdout = original_stdout
+
 
 # Evaluate the model's performance
 mean_reward, std_reward = evaluate_policy(model, model.get_env(), n_eval_episodes=100)
