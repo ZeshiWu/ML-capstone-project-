@@ -35,7 +35,7 @@ subprocess.run(["find", "/content/DQNtensorboard/", "-type", "d", "-name", "DQN_
 
 # Command to clean up PPO TensorBoard logs
 subprocess.run(["find", "/content/PPOtensorboard/", "-type", "d", "-name", "PPO_*", "-exec", "rm", "-r", "{}", "+"])
-'''
+
 """### 4x4 frozen lake map PPO - is_slippery off
 
 """
@@ -267,7 +267,7 @@ if total_episodes > 0:
     print(f"Overall: Average Reward: {overall_average_reward}")
 
 env.close()
-'''
+
 """# 8x8 frozen lake map DQN - is_slippery off"""
 print("8x8 frozen lake map DQN - is_slippery off")
 
@@ -289,6 +289,7 @@ import sys
 env = gym.make("FrozenLake-v1", is_slippery=False, map_name="8x8", render_mode="rgb_array")
 model = DQN("MlpPolicy", env, verbose=1, tensorboard_log="./DQNtensorboard/")
 
+#uncomment this when running in colab
 '''output_file = "/content/model_output.txt"
 with open(output_file, "w") as file:
     original_stdout = sys.stdout
@@ -299,6 +300,7 @@ with open(output_file, "w") as file:
 
 
     sys.stdout = original_stdout'''
+#uncomment this when running through git repo
 import os
 
 # Define the path to the output file relative to the script location
