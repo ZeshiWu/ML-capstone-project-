@@ -35,7 +35,7 @@ subprocess.run(["find", "/content/DQNtensorboard/", "-type", "d", "-name", "DQN_
 
 # Command to clean up PPO TensorBoard logs
 subprocess.run(["find", "/content/PPOtensorboard/", "-type", "d", "-name", "PPO_*", "-exec", "rm", "-r", "{}", "+"])
-
+'''
 """### 4x4 frozen lake map PPO - is_slippery off
 
 """
@@ -267,7 +267,7 @@ if total_episodes > 0:
     print(f"Overall: Average Reward: {overall_average_reward}")
 
 env.close()
-
+'''
 """# 8x8 frozen lake map DQN - is_slippery off"""
 print("8x8 frozen lake map DQN - is_slippery off")
 
