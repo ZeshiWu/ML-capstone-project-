@@ -7,9 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/12rZi29Ynhg0A-HwesahUU7nJx8CtDAS9
 """
 
-!pip install gymnasium
-!pip install stable-baselines3[extra]
-
 from pathlib import Path
 from typing import NamedTuple
 import matplotlib.pyplot as plt
@@ -31,8 +28,13 @@ from stable_baselines3.common.evaluation import evaluate_policy
 # Commented out IPython magic to ensure Python compatibility.
 # Load the TensorBoard notebook extension
 # %load_ext tensorboard
-!find /content/DQNtensorboard/ -type d -name "DQN_*" -exec rm -r {} +
-!find /content/PPOtensorboard/ -type d -name "PPO_*" -exec rm -r {} +
+import subprocess
+
+# Command to clean up DQN TensorBoard logs
+subprocess.run(["find", "/content/DQNtensorboard/", "-type", "d", "-name", "DQN_*", "-exec", "rm", "-r", "{}", "+"])
+
+# Command to clean up PPO TensorBoard logs
+subprocess.run(["find", "/content/PPOtensorboard/", "-type", "d", "-name", "PPO_*", "-exec", "rm", "-r", "{}", "+"])
 
 """### 4x4 frozen lake map PPO - is_slippery off
 
