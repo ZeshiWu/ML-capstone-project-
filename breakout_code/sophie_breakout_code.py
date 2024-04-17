@@ -14,6 +14,7 @@ class TrainAndSave(BaseCallback):
         self.save_path = save_path
         self.episode_rewards = []
         self.num_episodes = 0
+        self.output_number = 0
 
     def _init_callback(self):
 
@@ -21,11 +22,12 @@ class TrainAndSave(BaseCallback):
             os.makedirs(self.save_path, exist_ok=True)
 
     def _on_step(self):
-        if self.n_calls % self.check_freq == 0:
-            model_path = os.path.join(self.save_path, f'best_model_{self.n_calls}')
+        self.output_number += 1
+        if self.output_number % self.check_freq == 0:
+            model_path = os.path.join(self.save_path, f'best_model_{self.output_number}')
             self.model.save(model_path)
             mean_reward = round(sum(self.episode_rewards) / max(1, len(self.episode_rewards)), 2)
-            print(f"Output number: {self.n_calls}, Number of episodes: {self.num_episodes}, Average reward: {mean_reward}")
+            print(f"Output number: {self.output_number}, Number of episodes: {self.num_episodes}, Average reward: {mean_reward}")
             self.episode_rewards = []
             self.num_episodes = 0
         return True
