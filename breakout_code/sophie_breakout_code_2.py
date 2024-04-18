@@ -1,6 +1,7 @@
 from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import VecFrameStack, VecNormalize
+from stable_baselines3.common.env_util import make_atari_env
 from stable_baselines3 import PPO
 import gymnasium as gym 
 
@@ -37,7 +38,7 @@ class CustomCallback(BaseCallback):
         self.file.close()  # Close the file when training ends
 
 # Environment setup
-env = gym.make("ALE/Breakout-v5", render_mode='human')
+env = gym.make("ALE/Breakout-v5")
 env = Monitor(env)  # Wrap environment to track episode statistics
 env = VecFrameStack(env, n_stack=4)  # Frame stacking
 env = VecNormalize(env, norm_reward=False, clip_obs=1e6)  # Normalize observations
@@ -60,7 +61,7 @@ from stable_baselines3.common.evaluation import evaluate_policy
 import gymnasium as gym
 
 # Setup the environment and model
-env = gym.make("ALE/Breakout-v5", render_mode='human')
+env = gym.make("ALE/Breakout-v5")
 model = DQN("CnnPolicy", env, verbose=1, tensorboard_log="./DQNtensorboard/")
 
 import os
