@@ -1,10 +1,10 @@
-'''import gymnasium as gym 
+import gymnasium as gym 
 from stable_baselines3 import PPO
 from stable_baselines3.common.evaluation import evaluate_policy
 
 # Create and train PPO agent
 print('PPO agent')
-env = gym.make('Breakout-v4')
+env = gym.make("ALE/Breakout-v5")
 model = PPO('CnnPolicy', env, verbose=1)
 model.learn(total_timesteps=int(1e5))
 
@@ -24,8 +24,8 @@ print("|    total_timesteps  | {:.0f}     |".format(model.num_timesteps))
 print("----------------------------------")
 
 # Close environment
-env.close()'''
-
+env.close()
+'''
 import gymnasium as gym
 from stable_baselines3 import DQN
 from stable_baselines3.common.evaluation import evaluate_policy
@@ -54,4 +54,4 @@ print("----------------------------------")
 
 # Close environment
 env.close()
-
+'''
