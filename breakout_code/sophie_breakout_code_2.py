@@ -33,13 +33,13 @@ from stable_baselines3.common.evaluation import evaluate_policy
 # Create and train DQN agent
 print('DQN agent')
 
-env = gym.make('Breakout-v4')
+env = gym.make("ALE/Breakout-v5)
 model = DQN('CnnPolicy', env, verbose=1)
 model.learn(total_timesteps=int(1e5))
 
 # Evaluate the agent
-mean_reward, _ = evaluate_policy(model, env, n_eval_episodes=100)
-print("Output 1: Average over 100 episodes - Reward: {:.2f}".format(mean_reward))
+#mean_reward, _ = evaluate_policy(model, env, n_eval_episodes=100)
+#print("Output 1: Average over 100 episodes - Reward: {:.2f}".format(mean_reward))
 print("----------------------------------")
 print("| rollout/            |          |")
 print("|    ep_len_mean      | {:.0f}     |".format(model.ep_info_buffer.episode_lengths.mean()))
