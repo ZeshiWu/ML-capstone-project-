@@ -34,7 +34,7 @@ from stable_baselines3.common.evaluation import evaluate_policy
 print('DQN agent')
 
 env = gym.make("ALE/Breakout-v5")
-model = DQN('CnnPolicy', env, verbose=1)
+model = DQN('CnnPolicy', env, buffer_size=int(1e5), verbose=1)
 model.learn(total_timesteps=int(1e5))
 
 # Evaluate the agent
