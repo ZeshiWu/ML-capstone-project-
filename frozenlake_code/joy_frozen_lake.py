@@ -152,6 +152,102 @@ if total_episodes > 0:
 
 env.close()
 
+
+"""# 4x4 frozen lake map DQN - is_slippery off"""
+print("4x4 frozen lake map DQN - is_slippery off")
+
+#generate_random_map(size=map_size, p=params.proba_frozen, seed=params.seed),
+env = gym.make(
+        "FrozenLake-v1",
+        is_slippery=False,
+        render_mode="rgb_array",
+        map_name="4x4",
+        desc= None
+    )
+
+import gymnasium as gym
+from stable_baselines3 import DQN
+from stable_baselines3.common.evaluation import evaluate_policy
+import sys
+
+# Setup the environment and model
+env = gym.make("FrozenLake-v1", is_slippery=True, map_name="4x4", render_mode="rgb_array")
+model = DQN("MlpPolicy", env, verbose=1, tensorboard_log="./DQNtensorboard/")
+
+import os
+
+# Define the path to the output file relative to the script location
+output_file = "4x4_DQN_Notslipery_output.txt"
+
+# Get the directory of the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+output_path = os.path.join(script_dir, output_file)
+
+# Open the output file
+with open(output_path, "w") as file:
+    original_stdout = sys.stdout
+    sys.stdout = file
+
+    # Train the model
+    model.learn(total_timesteps=int(5e5), progress_bar=True)
+
+    # Restore stdout
+    sys.stdout = original_stdout
+
+
+# Evaluate the model's performance
+mean_reward, std_reward = evaluate_policy(model, model.get_env(), n_eval_episodes=100)
+print(f"Mean reward: {mean_reward}, Std reward: {std_reward}")
+print("Output written to:", output_file)
+
+
+"""# 4x4 frozen lake map DQN - is_slippery on"""
+print("4x4 frozen lake map DQN - is_slippery on")
+
+#generate_random_map(size=map_size, p=params.proba_frozen, seed=params.seed),
+env = gym.make(
+        "FrozenLake-v1",
+        is_slippery=True,
+        render_mode="rgb_array",
+        map_name="4x4",
+        desc= None
+    )
+
+import gymnasium as gym
+from stable_baselines3 import DQN
+from stable_baselines3.common.evaluation import evaluate_policy
+import sys
+
+# Setup the environment and model
+env = gym.make("FrozenLake-v1", is_slippery=True, map_name="4x4", render_mode="rgb_array")
+model = DQN("MlpPolicy", env, verbose=1, tensorboard_log="./DQNtensorboard/")
+
+import os
+
+# Define the path to the output file relative to the script location
+output_file = "4x4_DQN_Isslipery_output.txt"
+
+# Get the directory of the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+output_path = os.path.join(script_dir, output_file)
+
+# Open the output file
+with open(output_path, "w") as file:
+    original_stdout = sys.stdout
+    sys.stdout = file
+
+    # Train the model
+    model.learn(total_timesteps=int(5e5), progress_bar=True)
+
+    # Restore stdout
+    sys.stdout = original_stdout
+
+
+# Evaluate the model's performance
+mean_reward, std_reward = evaluate_policy(model, model.get_env(), n_eval_episodes=100)
+print(f"Mean reward: {mean_reward}, Std reward: {std_reward}")
+print("Output written to:", output_file)
+
 """### 8x8 frozen lake map PPO - is_slippery off
 
 """
@@ -304,7 +400,55 @@ with open(output_file, "w") as file:
 import os
 
 # Define the path to the output file relative to the script location
-output_file = "model_output.txt"
+output_file = "8x8_DQN_Notslipery_output.txt"
+
+# Get the directory of the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+output_path = os.path.join(script_dir, output_file)
+
+# Open the output file
+with open(output_path, "w") as file:
+    original_stdout = sys.stdout
+    sys.stdout = file
+
+    # Train the model
+    model.learn(total_timesteps=int(5e5), progress_bar=True)
+
+    # Restore stdout
+    sys.stdout = original_stdout
+
+
+# Evaluate the model's performance
+mean_reward, std_reward = evaluate_policy(model, model.get_env(), n_eval_episodes=100)
+print(f"Mean reward: {mean_reward}, Std reward: {std_reward}")
+print("Output written to:", output_file)
+
+
+"""# 8x8 frozen lake map DQN - is_slippery on"""
+print("8x8 frozen lake map DQN - is_slippery on")
+
+#generate_random_map(size=map_size, p=params.proba_frozen, seed=params.seed),
+env = gym.make(
+        "FrozenLake-v1",
+        is_slippery=True,
+        render_mode="rgb_array",
+        map_name="8x8",
+        desc= None
+    )
+
+import gymnasium as gym
+from stable_baselines3 import DQN
+from stable_baselines3.common.evaluation import evaluate_policy
+import sys
+
+# Setup the environment and model
+env = gym.make("FrozenLake-v1", is_slippery=True, map_name="8x8", render_mode="rgb_array")
+model = DQN("MlpPolicy", env, verbose=1, tensorboard_log="./DQNtensorboard/")
+
+import os
+
+# Define the path to the output file relative to the script location
+output_file = "8x8_DQN_Isslipery_output.txt"
 
 # Get the directory of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))
