@@ -14,12 +14,15 @@ from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3.common.env_util import make_atari_env
 from stable_baselines3 import DQN
 import gymnasium as gym
+import matplotlib.pyplot as plt
 
 class TrainAndSave(BaseCallback):
     def __init__(self, check_freq, save_path, verbose=1):
         super(TrainAndSave, self).__init__(verbose)
         self.check_freq = check_freq
         self.save_path = save_path
+        self.rewards = []
+        self.episode_rewards = []
 
     def _init_callback(self):
 
@@ -27,10 +30,25 @@ class TrainAndSave(BaseCallback):
             os.makedirs(self.save_path, exist_ok=True)
 
     def _on_step(self):
+        if 'episode' in self.locals:
+            self.episode_rewards.append(self.locals['episode']['r'])
         if self.n_calls % self.check_freq == 0:
+            if len(self.episode_rewards) > 0:  # Check if there are any rewards collected
+                average_reward = sum(self.episode_rewards) / len(self.episode_rewards)
+                self.rewards.append(average_reward)
+                self.episode_rewards = []  # Reset after each save/check
+            else:
+                self.rewards.append(0)  # Append 0 or handle this scenario appropriately
             model_path = os.path.join(self.save_path, f'best_model_{self.n_calls}')
             self.model.save(model_path)
         return True
+    def plot_rewards(self):
+        plt.figure(figsize=(12, 6))
+        plt.plot(self.rewards)
+        plt.xlabel('Number of Steps (in hundreds of thousands)')
+        plt.ylabel('Average Reward')
+        plt.title('Reward Over Time')
+        plt.show()
 
 CHECKPOINT_DIR = './train/'
 LOG_DIR = './logs/'
@@ -40,8 +58,9 @@ env = make_atari_env("ALE/Breakout-v5", n_envs=1, monitor_dir=LOG_DIR)
 vec_env = VecFrameStack(env, n_stack=window)
 
 callback = TrainAndSave(check_freq=100000, save_path=CHECKPOINT_DIR)
-newmodel = DQN('CnnPolicy', vec_env, tensorboard_log=LOG_DIR, verbose=1,
-            buffer_size=50000, batch_size=128, learning_starts=10000, gamma=0.95,
-            exploration_fraction = 0.3, exploration_final_eps=0.1)
 
-newmodel.learn(total_timesteps=1000000, callback=callback, log_interval=1000)
+newmodel = DQN('CnnPolicy', vec_env, tensorboard_log=LOG_DIR, verbose=1,
+               buffer_size=10000, batch_size=256, learning_starts=10000, gamma=0.95,
+               exploration_fraction=0.5, exploration_final_eps=0.05, learning_rate=0.0005)
+
+newmodel.learn(total_timesteps=500000, callback=callback, log_interval=1000)
