@@ -61,6 +61,6 @@ callback = TrainAndSave(check_freq=100000, save_path=CHECKPOINT_DIR)
 
 newmodel = DQN('CnnPolicy', vec_env, tensorboard_log=LOG_DIR, verbose=1,
                buffer_size=10000, batch_size=256, learning_starts=10000, gamma=0.95,
-               exploration_fraction=0.5, exploration_final_eps=0.05, learning_rate=0.0005)
+               exploration_fraction=0.3, exploration_final_eps=0.1, learning_rate=0.005)
 
 newmodel.learn(total_timesteps=500000, callback=callback, log_interval=1000)
