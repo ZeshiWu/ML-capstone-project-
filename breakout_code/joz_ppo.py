@@ -55,3 +55,8 @@ model = PPO('CnnPolicy', env, verbose=1, tensorboard_log=LOG_DIR,
 callback = TrainAndSave(check_freq=10000, save_path=CHECKPOINT_DIR)
 model.learn(total_timesteps=int(500000), callback=callback)
 callback.plot_rewards()
+
+#notes for parameters:
+#parameters for parallel4: n_envs=4 and PPO('CnnPolicy', env, verbose=1, tensorboard_log=LOG_DIR,learning_rate=0.005, n_steps=128, batch_size=256, n_epochs=10,gamma=0.99, gae_lambda=0.95, clip_range=0.2, ent_coef=0.01)
+#parameters for baseline: n_envs=1, others same
+#parameters for baseline_increasedtimestep: n_envs=1, total_timesteps=int(2000000) others same
