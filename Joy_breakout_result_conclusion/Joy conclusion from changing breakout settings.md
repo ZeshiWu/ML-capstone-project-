@@ -15,4 +15,8 @@
 3. Balancing Exploration and Exploitation: Too much exploration can lead to worse performance as the agent might not exploit the best-known strategies effectively. Conversely, too little exploration can prevent the agent from discovering potentially better strategies.
 
 
+### exploration_fraction=0.5, LR=0.0005 vs. exploration_fraction=0.5, LR =0.005:
 
+1. Right Graph (LR 0.005): The clustering at lower rewards suggests that the policy has become stuck in a suboptimal behavior and is not improving much over time.
+2. The smaller learning rate allows for a more gradual learning process with a wider range of rewards, whereas the larger learning rate might lead to faster convergence but potentially to a suboptimal policy. It's possible that the larger learning rate causes the algorithm to make larger updates to the policy, which could overshoot the optimal policy parameters, making it harder for the algorithm to refine its policy.
+3. If the learning rate is too high, it might harm the balance, leading to premature convergence to suboptimal policies. 
